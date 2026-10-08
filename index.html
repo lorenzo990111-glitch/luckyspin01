@@ -4,198 +4,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LUCKY SPIN GOLD</title>
+<title>Lucky Spin Gold</title>
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
-    color:#fff;
-    display:flex;
-    justify-content:center;
-    overflow-x:hidden;
-
     background:
-        radial-gradient(circle at 50% 10%, #806b19 0%, #211b08 28%, #050505 70%);
+        radial-gradient(
+            circle at 50% 0%,
+            #4b3a09 0%,
+            #181408 32%,
+            #050505 72%
+        );
+    color:white;
+    overflow-x:hidden;
 }
 
-/* =====================================
-   BACKGROUND GOLD SHINE
-===================================== */
+/* =========================================
+   GOLD LIGHT
+========================================= */
 
 body::before{
     content:"";
     position:fixed;
-    inset:0;
+    inset:-50%;
     pointer-events:none;
 
     background:
-        radial-gradient(circle at 10% 20%,rgba(255,215,0,.25),transparent 2%),
-        radial-gradient(circle at 90% 25%,rgba(255,215,0,.20),transparent 2%),
-        radial-gradient(circle at 20% 80%,rgba(255,255,255,.15),transparent 2%),
-        radial-gradient(circle at 80% 75%,rgba(255,215,0,.18),transparent 2%);
+        linear-gradient(
+            115deg,
+            transparent 42%,
+            rgba(255,215,0,.08) 48%,
+            rgba(255,255,255,.14) 50%,
+            rgba(255,215,0,.08) 52%,
+            transparent 58%
+        );
 
-    animation:shine 4s infinite alternate;
+    animation:goldLight 7s linear infinite;
 }
 
-@keyframes shine{
-    from{opacity:.45}
-    to{opacity:1}
+@keyframes goldLight{
+    from{
+        transform:translateX(-35%) rotate(8deg);
+    }
+    to{
+        transform:translateX(35%) rotate(8deg);
+    }
 }
 
-.container{
+.page{
     width:100%;
-    max-width:600px;
-    padding:28px 15px 50px;
+    max-width:620px;
+    margin:auto;
+    padding:30px 15px 50px;
     text-align:center;
 }
 
-/* =====================================
-   TITLE
-===================================== */
+/* =========================================
+   HEADER
+========================================= */
 
-.title{
-    font-size:42px;
-    font-weight:1000;
-    letter-spacing:3px;
+.brand{
+    font-size:43px;
+    font-weight:900;
+    letter-spacing:4px;
 
     background:
         linear-gradient(
             180deg,
-            #ffffff,
-            #fff7a0,
-            #ffd700,
-            #b8860b,
-            #fff5a0,
+            #fff,
+            #fff4a0 20%,
+            #ffd700 48%,
+            #9b7208 65%,
+            #fff1a0 85%,
             #ffd700
         );
 
     -webkit-background-clip:text;
+    background-clip:text;
     color:transparent;
 
-    text-shadow:
-        0 0 12px rgba(255,215,0,.5),
-        0 0 25px rgba(255,215,0,.25);
+    filter:drop-shadow(0 0 10px rgba(255,215,0,.4));
 }
 
 .subtitle{
-    margin-top:5px;
+    margin-top:6px;
     margin-bottom:28px;
 
-    color:#ffe98a;
-    font-size:14px;
-    letter-spacing:2px;
+    font-size:13px;
+    letter-spacing:3px;
+    color:#d8bd59;
 }
 
-/* =====================================
-   WHEEL AREA
-===================================== */
+/* =========================================
+   WHEEL WRAPPER
+========================================= */
 
-.wheel-area{
+.wheel-wrapper{
     position:relative;
 
     width:min(92vw,470px);
-    height:min(92vw,470px);
+    aspect-ratio:1/1;
 
-    margin:auto;
+    margin:0 auto;
 }
 
-/* =====================================
+/* =========================================
    POINTER
-===================================== */
+========================================= */
 
 .pointer{
     position:absolute;
-    z-index:20;
 
+    top:-3px;
     left:50%;
-    top:-7px;
 
     transform:translateX(-50%);
+
+    z-index:50;
 
     width:0;
     height:0;
 
-    border-left:25px solid transparent;
-    border-right:25px solid transparent;
-    border-top:55px solid #ffd700;
+    border-left:23px solid transparent;
+    border-right:23px solid transparent;
+    border-top:52px solid #ffd700;
 
     filter:
-        drop-shadow(0 0 4px white)
-        drop-shadow(0 0 12px #ffd700);
+        drop-shadow(0 0 3px white)
+        drop-shadow(0 0 10px #ffd700);
 }
 
-.pointer::after{
-    content:"";
-
+.pointer-dot{
     position:absolute;
 
-    left:-9px;
-    top:-49px;
-
-    width:18px;
-    height:18px;
+    width:15px;
+    height:15px;
 
     border-radius:50%;
 
     background:white;
 
+    left:50%;
+    top:38px;
+
+    transform:translateX(-50%);
+
+    z-index:51;
+
     box-shadow:
-        0 0 10px white,
-        0 0 20px #ffd700;
+        0 0 7px white,
+        0 0 16px #ffd700;
 }
 
-/* =====================================
-   WHEEL
-===================================== */
+/* =========================================
+   WHEEL OUTER GOLD
+========================================= */
 
-.wheel{
+.wheel-frame{
     position:absolute;
 
-    inset:8px;
+    inset:7px;
 
     border-radius:50%;
 
-    border:12px solid #d4af37;
+    padding:10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4a0,
+            #c39212,
+            #fff8bd,
+            #8d6505,
+            #ffd700,
+            #9b7108,
+            #fff2a0
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,215,0,.7),
+        0 0 45px rgba(255,215,0,.25);
+}
+
+/* =========================================
+   WHEEL
+========================================= */
+
+.wheel{
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    border-radius:50%;
 
     overflow:hidden;
 
     background:
         conic-gradient(
             from -90deg,
-
-            #1269d3 0deg 72deg,
-            #19a64a 72deg 144deg,
-            #df2d2d 144deg 216deg,
-            #e65ca8 216deg 288deg,
-            #181818 288deg 360deg
+            #1674d1 0deg 72deg,
+            #159c4b 72deg 144deg,
+            #dc2e2e 144deg 216deg,
+            #df5da5 216deg 288deg,
+            #151515 288deg 360deg
         );
 
-    box-shadow:
-        0 0 0 5px #111,
-        0 0 25px #ffd700,
-        0 0 60px rgba(255,215,0,.35),
-        inset 0 0 35px #000;
+    border:4px solid #171717;
 
     transition:
         transform 6s cubic-bezier(.12,.72,.08,1);
 }
 
-/* =====================================
-   GOLD DIVIDER LINES
-===================================== */
+/* =========================================
+   SECTOR LINES
+========================================= */
 
-.line{
+.divider{
     position:absolute;
 
-    width:3px;
+    width:2px;
     height:50%;
 
     left:50%;
@@ -203,28 +243,27 @@ body::before{
 
     transform-origin:bottom center;
 
-    background:linear-gradient(
-        to bottom,
-        #fff,
-        #ffd700,
-        #8b6508
-    );
+    background:
+        linear-gradient(
+            to bottom,
+            #fff,
+            #ffd700 40%,
+            #7b5900
+        );
 
-    box-shadow:0 0 5px #ffd700;
+    z-index:5;
 
-    z-index:3;
+    box-shadow:0 0 5px rgba(255,215,0,.8);
 }
 
-.line1{transform:rotate(72deg)}
-.line2{transform:rotate(144deg)}
-.line3{transform:rotate(216deg)}
-.line4{transform:rotate(288deg)}
-.line5{transform:rotate(360deg)}
+.d1{transform:rotate(72deg)}
+.d2{transform:rotate(144deg)}
+.d3{transform:rotate(216deg)}
+.d4{transform:rotate(288deg)}
 
-/* =====================================
-   PRIZE LABELS
-   1 HADIAH = 1 KOLOM
-===================================== */
+/* =========================================
+   PRIZE BOX
+========================================= */
 
 .prize{
     position:absolute;
@@ -232,381 +271,371 @@ body::before{
     left:50%;
     top:50%;
 
-    width:125px;
+    width:112px;
 
-    margin-left:-62.5px;
-    margin-top:-28px;
+    margin-left:-56px;
+    margin-top:-30px;
 
     text-align:center;
 
-    z-index:5;
+    z-index:10;
 
-    font-weight:1000;
+    font-weight:900;
+
+    color:#fff;
 
     text-shadow:
-        2px 2px 4px #000,
-        0 0 6px rgba(0,0,0,.8);
-
-    /*
-      Tiap hadiah ditempatkan tepat
-      di tengah sektornya.
-    */
+        2px 2px 4px rgba(0,0,0,.9);
 }
 
-.prize span{
-    display:inline-block;
+/*
+   Setiap hadiah memiliki satu posisi
+   yang sama persis di tengah sektornya.
+*/
 
-    font-size:19px;
-    line-height:1.15;
-}
-
-/* posisi 5 hadiah */
-
-.p1{
+.prize1{
     transform:
         rotate(-54deg)
-        translateY(-145px)
+        translateY(-143px)
         rotate(54deg);
 }
 
-.p2{
+.prize2{
     transform:
         rotate(18deg)
-        translateY(-145px)
+        translateY(-143px)
         rotate(-18deg);
 }
 
-.p3{
+.prize3{
     transform:
         rotate(90deg)
-        translateY(-145px)
+        translateY(-143px)
         rotate(-90deg);
 }
 
-.p4{
+.prize4{
     transform:
         rotate(162deg)
-        translateY(-145px)
+        translateY(-143px)
         rotate(-162deg);
 }
 
-.p5{
+.prize5{
     transform:
         rotate(234deg)
-        translateY(-145px)
+        translateY(-143px)
         rotate(-234deg);
 }
 
-.p5 span{
+.amount{
+    display:block;
+
+    font-size:20px;
+    line-height:1.15;
+}
+
+.bonus{
+    display:block;
+
     font-size:14px;
+    line-height:1.2;
+
     color:#ffd700;
 }
 
-/* =====================================
+/* =========================================
    CENTER
-===================================== */
+========================================= */
 
 .center{
     position:absolute;
 
-    z-index:10;
-
-    width:105px;
-    height:105px;
+    width:96px;
+    height:96px;
 
     left:50%;
     top:50%;
 
     transform:translate(-50%,-50%);
 
+    z-index:30;
+
     border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 25%,
-            #fff,
-            #ffe76b 20%,
-            #ffd700 40%,
-            #9b7100 75%,
-            #302300
-        );
-
-    border:7px solid #111;
-
-    box-shadow:
-        0 0 20px #ffd700,
-        inset 0 0 15px white;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #fff,
+            #ffe87b 18%,
+            #ffd700 42%,
+            #9b7100 75%,
+            #211900
+        );
+
+    border:6px solid #111;
+
     color:#171000;
 
     font-size:17px;
     font-weight:1000;
+
+    box-shadow:
+        0 0 18px #ffd700,
+        inset 0 0 12px white;
 }
 
-/* =====================================
+/* =========================================
    SPIN BUTTON
-===================================== */
+========================================= */
 
-.spin-btn{
-    margin-top:32px;
+.spin-button{
+    display:block;
 
     width:90%;
     max-width:390px;
 
-    padding:18px 20px;
+    margin:32px auto 0;
+
+    padding:17px 20px;
 
     border:none;
     border-radius:50px;
 
     cursor:pointer;
 
-    font-size:20px;
-    font-weight:1000;
+    font-size:19px;
+    font-weight:900;
     letter-spacing:1px;
 
-    color:#171000;
+    color:#181200;
 
     background:
         linear-gradient(
             180deg,
-            #fffbd0,
-            #ffd700,
-            #b8860b,
-            #ffd700,
-            #fff3a0
+            #fffbd1 0%,
+            #ffe45c 20%,
+            #d6a900 48%,
+            #ffd700 70%,
+            #fff1a0 100%
         );
 
-    border:2px solid #fff4a0;
+    border:2px solid #fff3a1;
 
     box-shadow:
-        0 0 20px rgba(255,215,0,.65),
+        0 5px 18px rgba(0,0,0,.45),
+        0 0 20px rgba(255,215,0,.4),
         inset 0 2px 5px white;
 
     transition:.2s;
 }
 
-.spin-btn:hover{
-    transform:scale(1.04);
+.spin-button:hover{
+    transform:translateY(-2px);
 
     box-shadow:
-        0 0 35px rgba(255,215,0,.9),
+        0 8px 25px rgba(0,0,0,.5),
+        0 0 30px rgba(255,215,0,.7),
         inset 0 2px 5px white;
 }
 
-.spin-btn:disabled{
-    opacity:.5;
+.spin-button:disabled{
+    opacity:.55;
     cursor:not-allowed;
     transform:none;
 }
 
-/* =====================================
-   RESULT BOX
-===================================== */
+/* =========================================
+   RESULT
+========================================= */
 
 .result{
     display:none;
 
+    width:100%;
+
     margin:25px auto 0;
 
-    padding:22px 18px;
+    padding:22px;
 
-    border-radius:20px;
+    border-radius:18px;
 
     background:
         linear-gradient(
             145deg,
-            #3c3008,
-            #101010,
-            #050505
+            #292108,
+            #101010
         );
 
-    border:2px solid #ffd700;
+    border:1px solid #d5ad25;
 
     box-shadow:
-        0 0 25px rgba(255,215,0,.35),
-        inset 0 0 20px rgba(255,215,0,.08);
+        0 0 25px rgba(255,215,0,.2);
 
-    animation:resultShow .6s ease;
+    animation:result .5s ease;
 }
 
-@keyframes resultShow{
+@keyframes result{
     from{
         opacity:0;
-        transform:scale(.75);
+        transform:translateY(15px);
     }
-
     to{
         opacity:1;
-        transform:scale(1);
+        transform:translateY(0);
     }
 }
 
-.result-title{
-    color:#ffe76b;
-
-    font-size:15px;
-
-    letter-spacing:1px;
-
-    margin-bottom:8px;
+.result-label{
+    color:#d8bd59;
+    font-size:13px;
+    letter-spacing:2px;
+    margin-bottom:7px;
 }
 
-.result-prize{
-    font-size:30px;
-
+.result-value{
+    font-size:31px;
     font-weight:1000;
 
     background:
         linear-gradient(
             180deg,
-            white,
+            #fff,
             #ffd700,
-            #b8860b,
-            #fff0a0
+            #a87905
         );
 
     -webkit-background-clip:text;
     color:transparent;
 }
 
-/* =====================================
+/* =========================================
    CLAIM
-===================================== */
+========================================= */
 
-.claim{
+.claim-title{
     margin-top:18px;
+    margin-bottom:9px;
+
+    font-size:13px;
+    color:#aaa;
 }
 
-.claim-btn{
+.claim-button{
     display:block;
 
     width:100%;
 
-    padding:16px;
+    padding:15px;
 
-    border-radius:12px;
+    border-radius:11px;
 
     text-decoration:none;
 
     color:#171000;
 
-    font-size:19px;
-
+    font-size:18px;
     font-weight:1000;
 
     background:
         linear-gradient(
             180deg,
-            #fff9a0,
+            #fff8a8,
             #ffd700,
             #b8860b,
             #ffd700
         );
 
-    border:1px solid #fff4a0;
+    border:1px solid #fff0a0;
 
     box-shadow:
-        0 0 20px rgba(255,215,0,.6),
+        0 0 18px rgba(255,215,0,.45),
         inset 0 2px 4px white;
 
     transition:.2s;
 }
 
-.claim-btn:hover{
+.claim-button:hover{
     transform:translateY(-2px);
-
     box-shadow:
-        0 0 30px rgba(255,215,0,.9),
+        0 0 28px rgba(255,215,0,.7),
         inset 0 2px 4px white;
 }
 
-/* =====================================
-   ALREADY SPIN
-===================================== */
+/* =========================================
+   USED MESSAGE
+========================================= */
 
-.already{
+.used{
     display:none;
 
-    margin-top:18px;
+    margin-top:17px;
 
-    padding:12px;
-
-    border-radius:10px;
-
-    background:#111;
-
-    border:1px solid #806b18;
-
-    color:#ffd700;
+    color:#e8cc5c;
 
     font-size:13px;
 }
 
-/* =====================================
-   FOOTER
-===================================== */
-
-.footer{
-    margin-top:18px;
-
-    color:#777;
-
-    font-size:11px;
-}
-
-/* =====================================
+/* =========================================
    MOBILE
-===================================== */
+========================================= */
 
-@media(max-width:430px){
+@media(max-width:450px){
 
-    .title{
+    .page{
+        padding-top:22px;
+    }
+
+    .brand{
         font-size:34px;
     }
 
     .subtitle{
-        font-size:11px;
+        font-size:10px;
+        letter-spacing:2px;
+    }
+
+    .wheel-wrapper{
+        width:94vw;
     }
 
     .prize{
-        width:105px;
-
-        margin-left:-52.5px;
+        width:90px;
+        margin-left:-45px;
     }
 
-    .prize span{
-        font-size:15px;
+    .amount{
+        font-size:16px;
     }
 
-    .p5 span{
+    .bonus{
         font-size:11px;
     }
 
-    .p1,
-    .p2,
-    .p3,
-    .p4,
-    .p5{
+    .prize1,
+    .prize2,
+    .prize3,
+    .prize4,
+    .prize5{
         transform:
             rotate(var(--angle))
-            translateY(-130px)
+            translateY(-127px)
             rotate(calc(var(--angle) * -1));
     }
 
-    .p1{--angle:-54deg}
-    .p2{--angle:18deg}
-    .p3{--angle:90deg}
-    .p4{--angle:162deg}
-    .p5{--angle:234deg}
+    .prize1{--angle:-54deg}
+    .prize2{--angle:18deg}
+    .prize3{--angle:90deg}
+    .prize4{--angle:162deg}
+    .prize5{--angle:234deg}
 
     .center{
-        width:82px;
-        height:82px;
-
+        width:78px;
+        height:78px;
         font-size:14px;
     }
 }
@@ -615,82 +644,109 @@ body::before{
 
 <body>
 
-<div class="container">
+<div class="page">
 
-    <div class="title">
+    <!-- HEADER -->
+
+    <div class="brand">
         LUCKY SPIN
     </div>
 
     <div class="subtitle">
-        ✦ PUTAR RODA &nbsp; • &nbsp; MENANGKAN HADIAH ✦
+        ✦ PUTAR SEKALI • MENANGKAN HADIAH ✦
     </div>
 
 
-    <!-- =================================
+    <!-- =====================================
          WHEEL
-    ================================== -->
+    ====================================== -->
 
-    <div class="wheel-area">
+    <div class="wheel-wrapper">
 
         <!-- JARUM -->
+
         <div class="pointer"></div>
+        <div class="pointer-dot"></div>
 
 
-        <div class="wheel" id="wheel">
+        <div class="wheel-frame">
 
-            <!-- GARIS PEMISAH -->
-            <div class="line line1"></div>
-            <div class="line line2"></div>
-            <div class="line line3"></div>
-            <div class="line line4"></div>
-            <div class="line line5"></div>
+            <div
+                class="wheel"
+                id="wheel">
 
 
-            <!-- HADIAH 1 -->
-            <div class="prize p1">
-                <span>
-                    50 RB
-                </span>
-            </div>
+                <!-- GARIS SEKTOR -->
+
+                <div class="divider d1"></div>
+                <div class="divider d2"></div>
+                <div class="divider d3"></div>
+                <div class="divider d4"></div>
 
 
-            <!-- HADIAH 2 -->
-            <div class="prize p2">
-                <span>
-                    100 RB
-                </span>
-            </div>
+                <!-- 50 RB -->
+
+                <div class="prize prize1">
+
+                    <span class="amount">
+                        50 RB
+                    </span>
+
+                </div>
 
 
-            <!-- HADIAH 3 -->
-            <div class="prize p3">
-                <span>
-                    150 RB
-                </span>
-            </div>
+                <!-- 100 RB -->
+
+                <div class="prize prize2">
+
+                    <span class="amount">
+                        100 RB
+                    </span>
+
+                </div>
 
 
-            <!-- HADIAH 4 -->
-            <div class="prize p4">
-                <span>
-                    200 RB
-                </span>
-            </div>
+                <!-- 150 RB -->
+
+                <div class="prize prize3">
+
+                    <span class="amount">
+                        150 RB
+                    </span>
+
+                </div>
 
 
-            <!-- HADIAH 5 -->
-            <div class="prize p5">
-                <span>
-                    BONUS<br>
-                    CASHBACK<br>
-                    1 JT
-                </span>
-            </div>
+                <!-- 200 RB -->
+
+                <div class="prize prize4">
+
+                    <span class="amount">
+                        200 RB
+                    </span>
+
+                </div>
 
 
-            <!-- TENGAH -->
-            <div class="center">
-                SPIN
+                <!-- BONUS -->
+
+                <div class="prize prize5">
+
+                    <span class="bonus">
+                        BONUS<br>
+                        CASHBACK<br>
+                        1 JT
+                    </span>
+
+                </div>
+
+
+                <!-- CENTER -->
+
+                <div class="center">
+                    SPIN
+                </div>
+
             </div>
 
         </div>
@@ -698,71 +754,62 @@ body::before{
     </div>
 
 
-    <!-- =================================
-         BUTTON SPIN
-    ================================== -->
+    <!-- =====================================
+         SPIN BUTTON
+    ====================================== -->
 
     <button
-        class="spin-btn"
-        id="spinBtn"
-        onclick="spinWheel()">
+        class="spin-button"
+        id="spinButton"
+        onclick="spin()">
 
         🎰 SPIN SEKARANG
 
     </button>
 
 
-    <!-- =================================
-         HASIL
-    ================================== -->
+    <!-- =====================================
+         RESULT
+    ====================================== -->
 
     <div
         class="result"
         id="result">
 
-        <div class="result-title">
-            🎉 SELAMAT! HADIAH ANDA
+        <div class="result-label">
+            HADIAH YANG ANDA DAPATKAN
         </div>
 
         <div
-            class="result-prize"
-            id="resultPrize">
-            -
+            class="result-value"
+            id="resultValue">
         </div>
 
 
-        <!-- CLAIM HADIAH -->
-
-        <div class="claim">
-
-            <a
-                class="claim-btn"
-                href="https://wadah4d01.com"
-                target="_blank"
-                rel="noopener noreferrer">
-
-                🎁 CLAIM HADIAH
-
-            </a>
-
+        <div class="claim-title">
+            Silakan klik tombol di bawah untuk claim hadiah
         </div>
+
+
+        <a
+            href="https://wadah4d01.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="claim-button">
+
+            🎁 CLAIM HADIAH
+
+        </a>
 
     </div>
 
-
-    <!-- SUDAH SPIN -->
 
     <div
-        class="already"
-        id="already">
+        class="used"
+        id="used">
 
-        ⚠️ Kesempatan spin sudah digunakan.
+        ⚠️ Kesempatan spin Anda sudah digunakan.
 
-    </div>
-
-
-    <div class="footer">
-        Setiap browser mendapatkan 1 kesempatan spin.
     </div>
 
 </div>
@@ -770,29 +817,11 @@ body::before{
 
 <script>
 
-/*
-=====================================================
-LUCKY SPIN
-=====================================================
+/* =========================================
+   DATA HADIAH
+========================================= */
 
-5 HADIAH:
-
-0 = 50 RB
-1 = 100 RB
-2 = 150 RB
-3 = 200 RB
-4 = BONUS CASHBACK 1 JT
-
-Masing-masing sektor = 72 derajat.
-
-Kita menghitung posisi tengah sektor dan memutar
-roda sehingga TENGAH hadiah pemenang tepat berada
-di bawah jarum.
-
-=====================================================
-*/
-
-const prizes = [
+const hadiah = [
     "50 RB",
     "100 RB",
     "150 RB",
@@ -800,155 +829,151 @@ const prizes = [
     "BONUS CASHBACK 1 JT"
 ];
 
-const wheel = document.getElementById("wheel");
-const spinBtn = document.getElementById("spinBtn");
-const result = document.getElementById("result");
-const resultPrize = document.getElementById("resultPrize");
-const already = document.getElementById("already");
+const wheel =
+    document.getElementById("wheel");
 
-let spinning = false;
+const spinButton =
+    document.getElementById("spinButton");
+
+const result =
+    document.getElementById("result");
+
+const resultValue =
+    document.getElementById("resultValue");
+
+const used =
+    document.getElementById("used");
+
+let sedangSpin = false;
 
 
-/*
-=====================================================
-CEK APAKAH SUDAH PERNAH SPIN
-=====================================================
-*/
+/* =========================================
+   CEK STATUS SPIN
+========================================= */
 
-window.addEventListener("load", function(){
+function checkSpin(){
 
     if(
-        localStorage.getItem("luckySpinUsed")
-        === "true"
+        localStorage.getItem("lucky_spin_done")
+        === "yes"
     ){
 
-        spinBtn.disabled = true;
+        spinButton.disabled = true;
 
-        spinBtn.innerHTML =
+        spinButton.innerHTML =
             "✓ SPIN SUDAH DIGUNAKAN";
 
-        already.style.display = "block";
+        used.style.display =
+            "block";
     }
+}
 
-});
+checkSpin();
 
 
-/*
-=====================================================
-FUNGSI SPIN
-=====================================================
-*/
+/* =========================================
+   SPIN
+========================================= */
 
-function spinWheel(){
+function spin(){
 
-    if(spinning){
+    if(sedangSpin){
         return;
     }
 
-
-    /*
-    Kalau sudah spin, tidak boleh spin lagi.
-    */
 
     if(
-        localStorage.getItem("luckySpinUsed")
-        === "true"
+        localStorage.getItem("lucky_spin_done")
+        === "yes"
     ){
-
-        spinBtn.disabled = true;
-
-        already.style.display = "block";
-
         return;
     }
 
 
-    spinning = true;
+    sedangSpin = true;
 
-    spinBtn.disabled = true;
+    spinButton.disabled = true;
 
 
     /*
-    PILIH HADIAH SECARA RANDOM
+    RANDOM HADIAH
 
     0 = 50 RB
     1 = 100 RB
     2 = 150 RB
     3 = 200 RB
-    4 = BONUS 1 JT
+    4 = BONUS
     */
 
     const winner =
         Math.floor(
-            Math.random() * prizes.length
+            Math.random() * hadiah.length
         );
 
 
     /*
-    ==========================================
-    HITUNG POSISI HADIAH
-    ==========================================
+    ======================================
+    PERHITUNGAN POSISI JARUM
+    ======================================
 
-    5 sektor = 360 / 5 = 72 derajat.
+    5 hadiah = 360°
 
-    Pusat setiap sektor:
+    360 / 5 = 72°
 
-    hadiah 0 = 36°
-    hadiah 1 = 108°
-    hadiah 2 = 180°
-    hadiah 3 = 252°
-    hadiah 4 = 324°
+    Titik tengah masing-masing sektor:
 
-    Karena background roda dimulai dari -90°,
-    pusat hadiah pertama berada 36° dari posisi
-    atas.
+    50 RB  = 36°
+    100 RB = 108°
+    150 RB = 180°
+    200 RB = 252°
+    BONUS  = 324°
 
-    Kita putar roda ke arah sebaliknya sehingga
-    pusat sektor pemenang tepat bertemu jarum.
+    Karena roda menggunakan
+    conic-gradient dari -90°,
+    kita putar roda sebesar:
+
+    6 putaran penuh
+    dikurangi posisi tengah sektor.
+
+    Dengan begitu titik tengah hadiah
+    berhenti tepat di bawah jarum.
     */
 
     const sector = 72;
 
     const center =
-        (winner * sector) + (sector / 2);
+        winner * sector + 36;
 
-
-    /*
-    6 putaran penuh + posisi kemenangan.
-    */
-
-    const fullRotation =
+    const fullTurns =
         360 * 6;
 
-
-    const finalRotation =
-        fullRotation - center;
+    const rotation =
+        fullTurns - center;
 
 
     /*
-    PUTAR RODA
+    MULAI PUTAR
     */
 
     wheel.style.transform =
         "rotate(" +
-        finalRotation +
+        rotation +
         "deg)";
 
 
     /*
-    Tunggu animasi selesai.
+    SELESAI ANIMASI
     */
 
     setTimeout(function(){
 
-
         /*
-        Tampilkan hadiah yang sama dengan
-        sektor tepat di bawah jarum.
+        HASIL HARUS SAMA DENGAN
+        SEKTOR YANG DITUNJUK
         */
 
-        resultPrize.textContent =
-            prizes[winner];
+        resultValue.textContent =
+            hadiah[winner];
 
 
         result.style.display =
@@ -956,28 +981,24 @@ function spinWheel(){
 
 
         /*
-        Simpan bahwa user sudah spin.
+        SIMPAN STATUS
         */
 
         localStorage.setItem(
-            "luckySpinUsed",
-            "true"
+            "lucky_spin_done",
+            "yes"
         );
 
 
-        /*
-        Kunci tombol.
-        */
-
-        spinBtn.innerHTML =
+        spinButton.innerHTML =
             "✓ SPIN SUDAH DIGUNAKAN";
 
 
-        spinning = false;
+        sedangSpin = false;
 
 
         /*
-        Scroll ke hasil.
+        SCROLL KE HASIL
         */
 
         setTimeout(function(){
@@ -989,7 +1010,6 @@ function spinWheel(){
 
         },200);
 
-
     },6200);
 
 }
@@ -999,17 +1019,3 @@ function spinWheel(){
 </body>
 </html>
 ```
-
-**Strukturnya sekarang:**
-
-* 🔵 **1 sektor:** 50 RB
-* 🟢 **1 sektor:** 100 RB
-* 🔴 **1 sektor:** 150 RB
-* 🩷 **1 sektor:** 200 RB
-* 🖤✨ **1 sektor:** BONUS CASHBACK 1 JT
-* 👆 Jarum selalu berhenti di **tengah sektor hadiah yang dipilih**
-* 🎁 Setelah berhenti, hasil hadiah yang muncul **sama dengan yang ditunjuk jarum**
-* 🔒 Hanya **1 kali spin** per browser
-* 🟡 Tombol **CLAIM HADIAH** menuju `https://wadah4d01.com`
-* 📱 Responsive untuk HP dan desktop
-* ✨ Tema **emas premium + black gold**.
