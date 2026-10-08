@@ -3,297 +3,513 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUCKY SPIN - Hadiah Emas</title>
+<title>Lucky Spin Gold</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  background:
-    radial-gradient(circle at 50% 20%, #5c4a00 0%, #171717 35%, #000 75%);
-  overflow-x: hidden;
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 50% 20%,#5f5000 0%,#17130a 35%,#020202 75%);
 }
 
-/* Kilauan background */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 15% 20%, rgba(255,215,0,.25), transparent 3%),
-    radial-gradient(circle at 80% 30%, rgba(255,215,0,.18), transparent 3%),
-    radial-gradient(circle at 30% 80%, rgba(255,255,255,.12), transparent 2%),
-    radial-gradient(circle at 85% 80%, rgba(255,215,0,.20), transparent 3%);
-  animation: sparkle 4s infinite alternate;
+/* GOLD PARTICLES */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background-image:
+        radial-gradient(circle,#fff6a0 1px,transparent 2px),
+        radial-gradient(circle,#ffd700 1px,transparent 2px),
+        radial-gradient(circle,#fff 1px,transparent 2px);
+
+    background-size:
+        80px 80px,
+        130px 130px,
+        170px 170px;
+
+    animation:stars 8s linear infinite;
+    opacity:.45;
 }
 
-@keyframes sparkle {
-  from { opacity: .5; }
-  to { opacity: 1; }
+@keyframes stars{
+    from{
+        background-position:0 0,0 0,0 0;
+    }
+    to{
+        background-position:80px 100px,-100px 130px,120px -100px;
+    }
 }
 
-.container {
-  width: 100%;
-  max-width: 520px;
-  margin: auto;
-  padding: 25px 15px 40px;
-  text-align: center;
+.container{
+    width:100%;
+    max-width:550px;
+    padding:25px 15px 40px;
+    text-align:center;
+    position:relative;
+    z-index:2;
 }
 
-.logo {
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  margin-top: 5px;
-  background: linear-gradient(
-    180deg,
-    #fff6a0,
-    #ffd700,
-    #fff,
-    #b8860b,
-    #ffd700
-  );
-  -webkit-background-clip: text;
-  color: transparent;
-  text-shadow: 0 0 20px rgba(255,215,0,.5);
+/* TITLE */
+
+.title{
+    font-size:42px;
+    font-weight:1000;
+    letter-spacing:3px;
+
+    background:linear-gradient(
+        120deg,
+        #8c6500,
+        #fff7a8,
+        #ffd700,
+        #fff,
+        #b8860b,
+        #ffe55c,
+        #8c6500
+    );
+
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:goldMove 3s linear infinite;
+
+    filter:drop-shadow(0 0 12px rgba(255,215,0,.55));
 }
 
-.subtitle {
-  margin-top: 5px;
-  color: #ffe98a;
-  font-size: 15px;
-  letter-spacing: 1px;
+@keyframes goldMove{
+    to{
+        background-position:300% center;
+    }
 }
 
-/* Wheel */
-.wheel-box {
-  position: relative;
-  width: min(90vw, 430px);
-  height: min(90vw, 430px);
-  margin: 30px auto;
+.subtitle{
+    margin-top:5px;
+    color:#ffe879;
+    font-size:14px;
+    letter-spacing:2px;
 }
 
-.wheel {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 12px solid #d4af37;
-  position: relative;
-  overflow: hidden;
-  box-shadow:
-    0 0 0 5px #111,
-    0 0 30px #ffd700,
-    inset 0 0 30px #000;
+/* WHEEL AREA */
 
-  background: conic-gradient(
-    #1976d2 0deg 72deg,
-    #18a558 72deg 144deg,
-    #e53935 144deg 216deg,
-    #ec5caa 216deg 288deg,
-    #111 288deg 360deg
-  );
-
-  transition: transform 5s cubic-bezier(.12,.72,.15,1);
+.wheel-area{
+    width:min(92vw,450px);
+    height:min(92vw,450px);
+    margin:30px auto 25px;
+    position:relative;
 }
 
-.segment {
-  position: absolute;
-  width: 50%;
-  height: 50%;
-  left: 25%;
-  top: 25%;
-  transform-origin: 50% 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* OUTER GOLD */
+
+.gold-ring{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #7b5600,
+        #fff4a0,
+        #d4af37,
+        #fff,
+        #9b7200,
+        #ffd700
+    );
+
+    padding:10px;
+
+    box-shadow:
+        0 0 10px #ffd700,
+        0 0 30px rgba(255,215,0,.7),
+        0 0 70px rgba(255,215,0,.25);
 }
 
-.segment span {
-  transform: translateY(-70px) rotate(36deg);
-  width: 120px;
-  font-size: 17px;
-  font-weight: 900;
-  text-shadow: 2px 2px 4px #000;
+/* WHEEL */
+
+#wheel{
+    width:100%;
+    height:100%;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            #1976d2 0deg 72deg,
+            #18a957 72deg 144deg,
+            #e53935 144deg 216deg,
+            #ec63b2 216deg 288deg,
+            #161616 288deg 360deg
+        );
+
+    border:5px solid #111;
+
+    transition:
+        transform 5.5s cubic-bezier(.12,.75,.12,1);
+
+    box-shadow:
+        inset 0 0 25px rgba(0,0,0,.7);
 }
 
-.s1 { transform: rotate(36deg); }
-.s2 { transform: rotate(108deg); }
-.s3 { transform: rotate(180deg); }
-.s4 { transform: rotate(252deg); }
-.s5 { transform: rotate(324deg); }
+/* DIVIDER LINES */
 
-.s1 span { color: #fff; }
-.s2 span { color: #fff; }
-.s3 span { color: #fff; }
-.s4 span { color: #fff; }
-.s5 span {
-  color: #ffd700;
+.line{
+    position:absolute;
+    width:3px;
+    height:50%;
+    background:rgba(255,255,255,.75);
+    left:calc(50% - 1.5px);
+    top:0;
+    transform-origin:bottom center;
+    z-index:3;
 }
 
-/* Center */
-.center {
-  position: absolute;
-  width: 95px;
-  height: 95px;
-  border-radius: 50%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 5;
+.l1{transform:rotate(72deg);}
+.l2{transform:rotate(144deg);}
+.l3{transform:rotate(216deg);}
+.l4{transform:rotate(288deg);}
+.l5{transform:rotate(360deg);}
 
-  background: linear-gradient(
-    145deg,
-    #fff5a0,
-    #ffd700,
-    #8b6508,
-    #ffd700
-  );
+/* LABELS */
 
-  border: 6px solid #111;
-  box-shadow:
-    0 0 20px #ffd700,
-    inset 0 0 15px #fff;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.label{
+    position:absolute;
+    width:50%;
+    height:50%;
+    left:25%;
+    top:25%;
 
-  color: #111;
-  font-size: 15px;
-  font-weight: 1000;
+    transform-origin:50% 100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    z-index:4;
 }
 
-/* Pointer */
-.pointer {
-  position: absolute;
-  top: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
+.label-content{
+    margin-top:15px;
+    width:130px;
 
-  width: 0;
-  height: 0;
-  border-left: 22px solid transparent;
-  border-right: 22px solid transparent;
-  border-top: 45px solid #ffd700;
+    font-weight:1000;
+    font-size:20px;
+    line-height:1.05;
 
-  filter: drop-shadow(0 0 8px #fff);
+    text-shadow:
+        2px 2px 3px #000,
+        0 0 5px rgba(0,0,0,.7);
+
+    transform:rotate(36deg);
 }
 
-/* Spin button */
-.spin-btn {
-  width: 90%;
-  max-width: 350px;
-  padding: 17px 20px;
-  border: 2px solid #fff0a0;
-  border-radius: 50px;
-  cursor: pointer;
+/*
+  Posisi label:
+  masing-masing tepat berada di tengah segmennya
+*/
 
-  font-size: 20px;
-  font-weight: 1000;
-  letter-spacing: 1px;
-
-  color: #171000;
-
-  background: linear-gradient(
-    180deg,
-    #fff8a8,
-    #ffd700,
-    #b8860b,
-    #ffd700
-  );
-
-  box-shadow:
-    0 0 15px rgba(255,215,0,.7),
-    inset 0 2px 4px #fff;
-
-  transition: .2s;
+.label:nth-child(1){
+    transform:rotate(0deg);
 }
 
-.spin-btn:hover {
-  transform: scale(1.04);
+.label:nth-child(2){
+    transform:rotate(72deg);
 }
 
-.spin-btn:disabled {
-  opacity: .5;
-  cursor: not-allowed;
+.label:nth-child(3){
+    transform:rotate(144deg);
 }
 
-/* Result */
-.result {
-  margin-top: 25px;
-  padding: 20px;
-  border-radius: 18px;
-  border: 2px solid #ffd700;
-  background: linear-gradient(145deg, #171717, #050505);
-  box-shadow: 0 0 20px rgba(255,215,0,.35);
-  display: none;
+.label:nth-child(4){
+    transform:rotate(216deg);
 }
 
-.result-title {
-  color: #ffd700;
-  font-size: 16px;
-  margin-bottom: 8px;
+.label:nth-child(5){
+    transform:rotate(288deg);
 }
 
-.result-hadiah {
-  font-size: 30px;
-  font-weight: 1000;
-  background: linear-gradient(
-    180deg,
-    #fff,
-    #ffd700,
-    #b8860b
-  );
-  -webkit-background-clip: text;
-  color: transparent;
+.blue{
+    color:#fff;
 }
 
-/* Claim */
-.claim {
-  display: none;
-  margin-top: 18px;
+.green{
+    color:#fff;
 }
 
-.claim-btn {
-  display: block;
-  text-decoration: none;
-  width: 100%;
-  padding: 16px;
-  border-radius: 12px;
-
-  background: linear-gradient(
-    180deg,
-    #ffd700,
-    #b8860b,
-    #ffd700
-  );
-
-  color: #111;
-  font-size: 18px;
-  font-weight: 1000;
-
-  box-shadow: 0 0 18px rgba(255,215,0,.6);
+.red{
+    color:#fff;
 }
 
-.note {
-  margin-top: 18px;
-  color: #aaa;
-  font-size: 12px;
+.pink{
+    color:#fff;
 }
 
-.already {
-  display: none;
-  margin-top: 20px;
-  color: #ffd700;
-  font-weight: bold;
+.gold-text{
+    color:#ffd700;
+    font-size:16px;
+}
+
+/* CENTER */
+
+.center{
+    position:absolute;
+
+    width:105px;
+    height:105px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    z-index:10;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:18px;
+    font-weight:1000;
+    color:#171000;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffbd0,
+            #ffd700,
+            #a87500,
+            #fff2a0,
+            #d4af37
+        );
+
+    border:6px solid #111;
+
+    box-shadow:
+        0 0 15px #ffd700,
+        0 0 35px rgba(255,215,0,.8),
+        inset 0 0 12px #fff;
+}
+
+/* POINTER */
+
+.pointer{
+    position:absolute;
+
+    top:-20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:0;
+    height:0;
+
+    border-left:25px solid transparent;
+    border-right:25px solid transparent;
+    border-top:55px solid #ffd700;
+
+    z-index:20;
+
+    filter:
+        drop-shadow(0 0 5px #fff)
+        drop-shadow(0 0 12px #ffd700);
+}
+
+.pointer::after{
+    content:"";
+
+    position:absolute;
+    left:-11px;
+    top:-52px;
+
+    width:22px;
+    height:22px;
+
+    border-radius:50%;
+
+    background:#fff8a0;
+
+    box-shadow:
+        0 0 10px #fff,
+        0 0 20px #ffd700;
+}
+
+/* BUTTON */
+
+.spin-button{
+    width:90%;
+    max-width:370px;
+
+    padding:18px 25px;
+
+    border:none;
+    border-radius:50px;
+
+    cursor:pointer;
+
+    font-size:21px;
+    font-weight:1000;
+    letter-spacing:1px;
+
+    color:#171000;
+
+    background:
+        linear-gradient(
+            120deg,
+            #8f6700,
+            #fff3a0,
+            #ffd700,
+            #fff,
+            #c18c00,
+            #ffe66d
+        );
+
+    background-size:300% auto;
+
+    animation:buttonGold 3s linear infinite;
+
+    box-shadow:
+        0 0 15px #ffd700,
+        0 0 35px rgba(255,215,0,.5),
+        inset 0 2px 5px #fff;
+}
+
+@keyframes buttonGold{
+    to{
+        background-position:300% center;
+    }
+}
+
+.spin-button:hover{
+    transform:scale(1.04);
+}
+
+.spin-button:disabled{
+    cursor:not-allowed;
+    opacity:.5;
+    animation:none;
+}
+
+/* RESULT */
+
+.result{
+    display:none;
+
+    margin:25px auto 0;
+    padding:22px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #050505
+        );
+
+    border:2px solid #d4af37;
+
+    box-shadow:
+        0 0 25px rgba(255,215,0,.35);
+}
+
+.result-title{
+    color:#ffe77b;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.result-prize{
+    font-size:32px;
+    font-weight:1000;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff,
+            #ffd700,
+            #b8860b
+        );
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    filter:drop-shadow(0 0 7px rgba(255,215,0,.5));
+}
+
+/* CLAIM */
+
+.claim{
+    display:none;
+    margin-top:18px;
+}
+
+.claim-button{
+    display:block;
+
+    padding:17px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    font-size:19px;
+    font-weight:1000;
+
+    color:#171000;
+
+    background:
+        linear-gradient(
+            120deg,
+            #a87900,
+            #fff09a,
+            #ffd700,
+            #fff,
+            #b8860b
+        );
+
+    background-size:300% auto;
+
+    animation:goldMove 3s linear infinite;
+
+    box-shadow:
+        0 0 20px rgba(255,215,0,.65);
+}
+
+.claim-button:hover{
+    transform:scale(1.02);
+}
+
+.warning{
+    display:none;
+
+    margin-top:20px;
+
+    color:#ffd700;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.note{
+    margin-top:18px;
+    font-size:12px;
+    color:#aaa;
 }
 </style>
 </head>
@@ -302,163 +518,332 @@ body::before {
 
 <div class="container">
 
-  <div class="logo">LUCKY SPIN</div>
-  <div class="subtitle">PUTAR RODA • DAPATKAN HADIAH</div>
+    <div class="title">LUCKY SPIN</div>
 
-  <div class="wheel-box">
-
-    <div class="pointer"></div>
-
-    <div class="wheel" id="wheel">
-
-      <div class="segment s1">
-        <span>50 RB</span>
-      </div>
-
-      <div class="segment s2">
-        <span>100 RB</span>
-      </div>
-
-      <div class="segment s3">
-        <span>150 RB</span>
-      </div>
-
-      <div class="segment s4">
-        <span>200 RB</span>
-      </div>
-
-      <div class="segment s5">
-        <span>BONUS<br>CASHBACK<br>1 JT</span>
-      </div>
-
-      <div class="center">
-        SPIN
-      </div>
-
-    </div>
-  </div>
-
-  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
-    🎰 SPIN SEKARANG
-  </button>
-
-  <div class="result" id="result">
-    <div class="result-title">
-      🎉 SELAMAT! HADIAH ANDA:
+    <div class="subtitle">
+        PUTAR &nbsp; • &nbsp; MENANGKAN HADIAH
     </div>
 
-    <div class="result-hadiah" id="hadiah">
-      -
+    <div class="wheel-area">
+
+        <!-- JARUM -->
+        <div class="pointer"></div>
+
+        <div class="gold-ring">
+
+            <div id="wheel">
+
+                <!-- GARIS PEMBATAS -->
+                <div class="line l1"></div>
+                <div class="line l2"></div>
+                <div class="line l3"></div>
+                <div class="line l4"></div>
+                <div class="line l5"></div>
+
+                <!-- HADIAH -->
+
+                <div class="label">
+                    <div class="label-content blue">
+                        💎<br>
+                        50 RB
+                    </div>
+                </div>
+
+                <div class="label">
+                    <div class="label-content green">
+                        💚<br>
+                        100 RB
+                    </div>
+                </div>
+
+                <div class="label">
+                    <div class="label-content red">
+                        🔥<br>
+                        150 RB
+                    </div>
+                </div>
+
+                <div class="label">
+                    <div class="label-content pink">
+                        💗<br>
+                        200 RB
+                    </div>
+                </div>
+
+                <div class="label">
+                    <div class="label-content gold-text">
+                        ⭐<br>
+                        BONUS<br>
+                        CASHBACK<br>
+                        1 JT
+                    </div>
+                </div>
+
+                <!-- TENGAH -->
+                <div class="center">
+                    SPIN
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="claim" id="claim">
-      <a
-        class="claim-btn"
-        href="https://wadah4d01.com"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        🎁 CLAIM HADIAH
-      </a>
+    <!-- TOMBOL SPIN -->
+
+    <button
+        class="spin-button"
+        id="spinButton"
+        onclick="spinWheel()"
+    >
+        🎰 SPIN SEKARANG
+    </button>
+
+    <!-- HASIL -->
+
+    <div class="result" id="result">
+
+        <div class="result-title">
+            🎉 SELAMAT! ANDA MENDAPATKAN
+        </div>
+
+        <div
+            class="result-prize"
+            id="resultPrize"
+        >
+            -
+        </div>
+
+        <div class="claim" id="claim">
+
+            <a
+                class="claim-button"
+                href="https://wadah4d01.com"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                🎁 CLAIM HADIAH
+            </a>
+
+        </div>
+
     </div>
-  </div>
 
-  <div class="already" id="already">
-    ⚠️ Anda sudah menggunakan kesempatan spin.
-  </div>
+    <div class="warning" id="warning">
+        ⚠️ Kesempatan spin Anda sudah digunakan.
+    </div>
 
-  <div class="note">
-    Setiap pengguna mendapatkan 1 kesempatan spin.
-  </div>
+    <div class="note">
+        Setiap pengguna hanya mendapatkan 1x kesempatan spin.
+    </div>
 
 </div>
 
+
 <script>
 
+/*
+=================================================
+DATA HADIAH
+=================================================
+*/
+
 const prizes = [
-  "50 RB",
-  "100 RB",
-  "150 RB",
-  "200 RB",
-  "BONUS CASHBACK 1 JT"
+    "50 RB",
+    "100 RB",
+    "150 RB",
+    "200 RB",
+    "BONUS CASHBACK 1 JT"
 ];
+
+
+/*
+=================================================
+ELEMEN
+=================================================
+*/
+
+const wheel = document.getElementById("wheel");
+const spinButton = document.getElementById("spinButton");
+const result = document.getElementById("result");
+const resultPrize = document.getElementById("resultPrize");
+const claim = document.getElementById("claim");
+const warning = document.getElementById("warning");
 
 let spinning = false;
 
-const wheel = document.getElementById("wheel");
-const spinBtn = document.getElementById("spinBtn");
-const result = document.getElementById("result");
-const hadiah = document.getElementById("hadiah");
-const claim = document.getElementById("claim");
-const already = document.getElementById("already");
 
-function spinWheel() {
+/*
+=================================================
+SPIN
+=================================================
 
-  if (spinning) return;
+Ada 5 bagian.
 
-  // Cek apakah sudah spin
-  if (localStorage.getItem("luckySpinUsed") === "true") {
-    spinBtn.disabled = true;
-    already.style.display = "block";
-    return;
-  }
+Masing-masing bagian = 72 derajat.
 
-  spinning = true;
-  spinBtn.disabled = true;
+Posisi tengah:
+50 RB       = 36°
+100 RB      = 108°
+150 RB      = 180°
+200 RB      = 252°
+BONUS 1 JT  = 324°
 
-  /*
-    Pilih hadiah secara acak
-    0 = 50 RB
-    1 = 100 RB
-    2 = 150 RB
-    3 = 200 RB
-    4 = Bonus Cashback 1 JT
-  */
-  const winner = Math.floor(Math.random() * prizes.length);
+Jarum berada di bagian ATAS = -90°.
 
-  /*
-    Setiap hadiah berada pada 72 derajat.
-    Tambahkan beberapa putaran agar animasinya terlihat.
-  */
-  const segmentAngle = 72;
+Rumus rotasi dibuat supaya
+TENGAH HADIAH yang menang tepat
+berada di bawah jarum.
+=================================================
+*/
 
-  const targetAngle =
-    360 * 6 +
-    (360 - (winner * segmentAngle + segmentAngle / 2));
+function spinWheel(){
 
-  wheel.style.transform =
-    "rotate(" + targetAngle + "deg)";
+    if(spinning){
+        return;
+    }
 
-  setTimeout(() => {
+    /*
+    Cek apakah sudah pernah spin
+    */
 
-    hadiah.textContent = prizes[winner];
+    if(localStorage.getItem("luckySpinUsed") === "true"){
 
-    result.style.display = "block";
-    claim.style.display = "block";
+        warning.style.display = "block";
 
-    // Tandai sudah digunakan
-    localStorage.setItem("luckySpinUsed", "true");
+        spinButton.disabled = true;
 
-    spinning = false;
+        return;
+    }
 
-    spinBtn.textContent = "SPIN SUDAH DIGUNAKAN";
 
-  }, 5200);
+    spinning = true;
+
+    spinButton.disabled = true;
+
+
+    /*
+    Tentukan pemenang secara random
+    */
+
+    const winner =
+        Math.floor(Math.random() * prizes.length);
+
+
+    /*
+    72 derajat per hadiah
+    */
+
+    const segmentAngle = 72;
+
+
+    /*
+    Posisi tengah segmen
+    */
+
+    const segmentCenter =
+        winner * segmentAngle + 36;
+
+
+    /*
+    Jarum = -90 derajat
+
+    Cari rotasi supaya pusat hadiah
+    tepat berada di posisi jarum.
+    */
+
+    const targetRotation =
+        360 * 7 +
+        (-90 - segmentCenter);
+
+
+    /*
+    Jalankan roda
+    */
+
+    wheel.style.transform =
+        `rotate(${targetRotation}deg)`;
+
+
+    /*
+    Tunggu animasi selesai
+    */
+
+    setTimeout(function(){
+
+        /*
+        Tampilkan hasil yang SAMA
+        dengan hadiah yang ditunjuk jarum
+        */
+
+        resultPrize.textContent =
+            prizes[winner];
+
+
+        result.style.display =
+            "block";
+
+
+        claim.style.display =
+            "block";
+
+
+        /*
+        Tandai sudah digunakan
+        */
+
+        localStorage.setItem(
+            "luckySpinUsed",
+            "true"
+        );
+
+
+        spinButton.textContent =
+            "✓ SPIN SUDAH DIGUNAKAN";
+
+
+        spinning = false;
+
+
+        /*
+        Scroll sedikit ke hasil
+        */
+
+        result.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+
+    },5600);
+
 }
 
 
-// Cek status saat halaman dibuka
-window.onload = function() {
+/*
+=================================================
+CEK SAAT HALAMAN DIBUKA
+=================================================
+*/
 
-  if (localStorage.getItem("luckySpinUsed") === "true") {
+window.addEventListener("load",function(){
 
-    spinBtn.disabled = true;
-    spinBtn.textContent = "SPIN SUDAH DIGUNAKAN";
-    already.style.display = "block";
+    if(
+        localStorage.getItem("luckySpinUsed")
+        === "true"
+    ){
 
-  }
+        spinButton.disabled = true;
 
-};
+        spinButton.textContent =
+            "✓ SPIN SUDAH DIGUNAKAN";
+
+        warning.style.display =
+            "block";
+    }
+
+});
 
 </script>
 
