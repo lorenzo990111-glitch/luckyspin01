@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUCKY SPIN - Hadiah Emas</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background:
+    radial-gradient(circle at 50% 20%, #5c4a00 0%, #171717 35%, #000 75%);
+  overflow-x: hidden;
+}
+
+/* Kilauan background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,215,0,.25), transparent 3%),
+    radial-gradient(circle at 80% 30%, rgba(255,215,0,.18), transparent 3%),
+    radial-gradient(circle at 30% 80%, rgba(255,255,255,.12), transparent 2%),
+    radial-gradient(circle at 85% 80%, rgba(255,215,0,.20), transparent 3%);
+  animation: sparkle 4s infinite alternate;
+}
+
+@keyframes sparkle {
+  from { opacity: .5; }
+  to { opacity: 1; }
+}
+
+.container {
+  width: 100%;
+  max-width: 520px;
+  margin: auto;
+  padding: 25px 15px 40px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-top: 5px;
+  background: linear-gradient(
+    180deg,
+    #fff6a0,
+    #ffd700,
+    #fff,
+    #b8860b,
+    #ffd700
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(255,215,0,.5);
+}
+
+.subtitle {
+  margin-top: 5px;
+  color: #ffe98a;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+/* Wheel */
+.wheel-box {
+  position: relative;
+  width: min(90vw, 430px);
+  height: min(90vw, 430px);
+  margin: 30px auto;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 12px solid #d4af37;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 5px #111,
+    0 0 30px #ffd700,
+    inset 0 0 30px #000;
+
+  background: conic-gradient(
+    #1976d2 0deg 72deg,
+    #18a558 72deg 144deg,
+    #e53935 144deg 216deg,
+    #ec5caa 216deg 288deg,
+    #111 288deg 360deg
+  );
+
+  transition: transform 5s cubic-bezier(.12,.72,.15,1);
+}
+
+.segment {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  left: 25%;
+  top: 25%;
+  transform-origin: 50% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.segment span {
+  transform: translateY(-70px) rotate(36deg);
+  width: 120px;
+  font-size: 17px;
+  font-weight: 900;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.s1 { transform: rotate(36deg); }
+.s2 { transform: rotate(108deg); }
+.s3 { transform: rotate(180deg); }
+.s4 { transform: rotate(252deg); }
+.s5 { transform: rotate(324deg); }
+
+.s1 span { color: #fff; }
+.s2 span { color: #fff; }
+.s3 span { color: #fff; }
+.s4 span { color: #fff; }
+.s5 span {
+  color: #ffd700;
+}
+
+/* Center */
+.center {
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+
+  background: linear-gradient(
+    145deg,
+    #fff5a0,
+    #ffd700,
+    #8b6508,
+    #ffd700
+  );
+
+  border: 6px solid #111;
+  box-shadow:
+    0 0 20px #ffd700,
+    inset 0 0 15px #fff;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #111;
+  font-size: 15px;
+  font-weight: 1000;
+}
+
+/* Pointer */
+.pointer {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  width: 0;
+  height: 0;
+  border-left: 22px solid transparent;
+  border-right: 22px solid transparent;
+  border-top: 45px solid #ffd700;
+
+  filter: drop-shadow(0 0 8px #fff);
+}
+
+/* Spin button */
+.spin-btn {
+  width: 90%;
+  max-width: 350px;
+  padding: 17px 20px;
+  border: 2px solid #fff0a0;
+  border-radius: 50px;
+  cursor: pointer;
+
+  font-size: 20px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+
+  color: #171000;
+
+  background: linear-gradient(
+    180deg,
+    #fff8a8,
+    #ffd700,
+    #b8860b,
+    #ffd700
+  );
+
+  box-shadow:
+    0 0 15px rgba(255,215,0,.7),
+    inset 0 2px 4px #fff;
+
+  transition: .2s;
+}
+
+.spin-btn:hover {
+  transform: scale(1.04);
+}
+
+.spin-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* Result */
+.result {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 18px;
+  border: 2px solid #ffd700;
+  background: linear-gradient(145deg, #171717, #050505);
+  box-shadow: 0 0 20px rgba(255,215,0,.35);
+  display: none;
+}
+
+.result-title {
+  color: #ffd700;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.result-hadiah {
+  font-size: 30px;
+  font-weight: 1000;
+  background: linear-gradient(
+    180deg,
+    #fff,
+    #ffd700,
+    #b8860b
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Claim */
+.claim {
+  display: none;
+  margin-top: 18px;
+}
+
+.claim-btn {
+  display: block;
+  text-decoration: none;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+
+  background: linear-gradient(
+    180deg,
+    #ffd700,
+    #b8860b,
+    #ffd700
+  );
+
+  color: #111;
+  font-size: 18px;
+  font-weight: 1000;
+
+  box-shadow: 0 0 18px rgba(255,215,0,.6);
+}
+
+.note {
+  margin-top: 18px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+.already {
+  display: none;
+  margin-top: 20px;
+  color: #ffd700;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="logo">LUCKY SPIN</div>
+  <div class="subtitle">PUTAR RODA • DAPATKAN HADIAH</div>
+
+  <div class="wheel-box">
+
+    <div class="pointer"></div>
+
+    <div class="wheel" id="wheel">
+
+      <div class="segment s1">
+        <span>50 RB</span>
+      </div>
+
+      <div class="segment s2">
+        <span>100 RB</span>
+      </div>
+
+      <div class="segment s3">
+        <span>150 RB</span>
+      </div>
+
+      <div class="segment s4">
+        <span>200 RB</span>
+      </div>
+
+      <div class="segment s5">
+        <span>BONUS<br>CASHBACK<br>1 JT</span>
+      </div>
+
+      <div class="center">
+        SPIN
+      </div>
+
+    </div>
+  </div>
+
+  <button class="spin-btn" id="spinBtn" onclick="spinWheel()">
+    🎰 SPIN SEKARANG
+  </button>
+
+  <div class="result" id="result">
+    <div class="result-title">
+      🎉 SELAMAT! HADIAH ANDA:
+    </div>
+
+    <div class="result-hadiah" id="hadiah">
+      -
+    </div>
+
+    <div class="claim" id="claim">
+      <a
+        class="claim-btn"
+        href="https://wadah4d01.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        🎁 CLAIM HADIAH
+      </a>
+    </div>
+  </div>
+
+  <div class="already" id="already">
+    ⚠️ Anda sudah menggunakan kesempatan spin.
+  </div>
+
+  <div class="note">
+    Setiap pengguna mendapatkan 1 kesempatan spin.
+  </div>
+
+</div>
+
+<script>
+
+const prizes = [
+  "50 RB",
+  "100 RB",
+  "150 RB",
+  "200 RB",
+  "BONUS CASHBACK 1 JT"
+];
+
+let spinning = false;
+
+const wheel = document.getElementById("wheel");
+const spinBtn = document.getElementById("spinBtn");
+const result = document.getElementById("result");
+const hadiah = document.getElementById("hadiah");
+const claim = document.getElementById("claim");
+const already = document.getElementById("already");
+
+function spinWheel() {
+
+  if (spinning) return;
+
+  // Cek apakah sudah spin
+  if (localStorage.getItem("luckySpinUsed") === "true") {
+    spinBtn.disabled = true;
+    already.style.display = "block";
+    return;
+  }
+
+  spinning = true;
+  spinBtn.disabled = true;
+
+  /*
+    Pilih hadiah secara acak
+    0 = 50 RB
+    1 = 100 RB
+    2 = 150 RB
+    3 = 200 RB
+    4 = Bonus Cashback 1 JT
+  */
+  const winner = Math.floor(Math.random() * prizes.length);
+
+  /*
+    Setiap hadiah berada pada 72 derajat.
+    Tambahkan beberapa putaran agar animasinya terlihat.
+  */
+  const segmentAngle = 72;
+
+  const targetAngle =
+    360 * 6 +
+    (360 - (winner * segmentAngle + segmentAngle / 2));
+
+  wheel.style.transform =
+    "rotate(" + targetAngle + "deg)";
+
+  setTimeout(() => {
+
+    hadiah.textContent = prizes[winner];
+
+    result.style.display = "block";
+    claim.style.display = "block";
+
+    // Tandai sudah digunakan
+    localStorage.setItem("luckySpinUsed", "true");
+
+    spinning = false;
+
+    spinBtn.textContent = "SPIN SUDAH DIGUNAKAN";
+
+  }, 5200);
+}
+
+
+// Cek status saat halaman dibuka
+window.onload = function() {
+
+  if (localStorage.getItem("luckySpinUsed") === "true") {
+
+    spinBtn.disabled = true;
+    spinBtn.textContent = "SPIN SUDAH DIGUNAKAN";
+    already.style.display = "block";
+
+  }
+
+};
+
+</script>
+
+</body>
+</html>
